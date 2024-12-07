@@ -3,15 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { afterLoginApi } from "../api";
 import { getAuthHeader } from "../utils/authUtils"; 
 const Home = () => {
-  const navigate = useNavigate();
+  
   const [data, setData] = useState(null);
-
-  const handleLogout = () => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
-    localStorage.clear();
-    navigate("/");
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,12 +19,11 @@ const Home = () => {
         setData(response.data); 
       } catch (error) {
         console.error("Failed to fetch data:", error);
-        navigate("/")
       }
     };
 
     fetchData();
-  }, [navigate]);
+  }, []);
 
   return (
     <div>
@@ -57,7 +49,6 @@ const Home = () => {
       ) : (
         <p>Loading...</p>
       )}
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
