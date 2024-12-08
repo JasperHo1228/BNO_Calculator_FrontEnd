@@ -1,0 +1,101 @@
+.lessData-form-padding{
+  padding:3rem;
+}
+
+.moreData-form-padding{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.form-section {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .form-title-field {
+    padding-bottom: 0.3rem;
+    color: black;
+    font-weight: 550;
+
+  }
+
+  /* Form labels */
+  .form-section label {
+    display: block;
+    text-align: start;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  /* Input fields */
+  .form-section input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Focus state for inputs */
+  .form-section input:focus {
+    border-color: #3498db;
+    background-color: #fff;
+    outline: none; /* Remove the default focus outline */
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer; 
+  }
+  .form-section input:hover{
+    cursor: text;
+  }
+
+  /* Submit button */
+  .form-section button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover state for button */
+  .form-section button:hover {
+    background-color: #2980b9;
+    cursor: pointer;
+  }
+  
+  /* Disabled button */
+  .form-section button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  /* Error Message */
+  .form-section p.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+

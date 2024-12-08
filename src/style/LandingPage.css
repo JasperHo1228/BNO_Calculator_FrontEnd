@@ -5,46 +5,40 @@
     align-items: center;
     justify-content: center; /* Center all content vertically */
     padding: 2rem;
-    min-height: 80vh;
+    min-height: 65vh;
     box-sizing: border-box;
     text-align: center; /* Center the text horizontally */
-    position: relative; /* Ensure absolute children (form and text) can be positioned */
+    
   }
   
   /* Center the message-section */
-  .message-section {
-    position: absolute; /* Make sure it does not push other content */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust to ensure proper centering */
+  .landing-page-message-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Stack the text */
     text-align: center;
-    z-index: 1; /* Ensure it's above the form */
     font-size: 20px;
   }
   
-  .fade-step {
-    position: absolute; /* Stack text on top of each other */
+  .landing-page-fade-step {
+    position: absolute; 
     opacity: 0; /* Initially hidden */
     transition: opacity 1.2s ease-in-out;
   }
   
-  .fade-in {
+  .landing-page-fade-in {
     opacity: 1; 
   }
   
-  .fade-out {
+  .landing-page-fade-out {
     opacity: 0; 
   }
   
   /* Form Pop-up Animation */
-  .pop-up {
+  .landing-page-form-pop-up {
     animation: popUp 2s ease-in-out forwards;
-    position: relative; /* Keeps the form centered */
-    z-index: 0; /* Ensure it's below the message-section */
+    position: absolute;
+    z-index: 0; 
   }
   
   @keyframes popUp {
@@ -58,84 +52,31 @@
     }
   }
 
-/* Form Section */
-.form-section {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    margin-top: 2rem; /* Space from message */
+/* Form Section animation*/
+.landing-page-form-animation {
     animation: popUp 1s ease-in-out backwards; 
   }
 
-  .form-title{
+  .landing-page-form-title{
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    color:black;
+    text-align: start;
     animation: popUp 1s ease-in-out forwards; 
   }
 
-  /* Form labels */
-  .form-section label {
+  .error-msg-container-landingPage{
     display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #333;
+    justify-content: center;
+    padding: 1rem;
+    align-items: center;
+    background-color: azure;
+    border-radius:1rem ;
+  }
+
+.message-error-landingPage{
+    color: rgb(112, 5, 162);
+    font-weight: 600;
   }
   
-  /* Input fields */
-  .form-section input {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-  }
-  
-  /* Focus state for inputs */
-  .form-section input:focus {
-    border-color: #3498db;
-    background-color: #fff;
-    outline: none; /* Remove the default focus outline */
-  }
-  
-  /* Submit button */
-  .form-section button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 100%;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Hover state for button */
-  .form-section button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Disabled button */
-  .form-section button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-  }
-  
-  /* Error Message */
-  .form-section p.error-message {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: 1rem;
-    font-weight: bold;
-  }
-  
-  
+ 

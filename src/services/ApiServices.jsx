@@ -23,6 +23,7 @@ export const beforeLoginPostApi = async (endpoint, data, customHeaders = {}) => 
       });
       return response;
     } catch (error) {
+      console.log(error)
       throw error;
     }
   };

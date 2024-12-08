@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { beforeLoginPostApi } from "../services/ApiServices";
-
+import "../style/CommonStyle/GeneralForm.css"
+import "../style/LoginPage.css"
 const Login = ({setIsAuthenticated}) => {
 
   const [formState, setFormState] = useState({
@@ -18,11 +20,10 @@ const Login = ({setIsAuthenticated}) => {
       [field]: value,
     }));
   };
-
+  const { email, password, message } = formState;
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { email, password } = formState;
       const loginRequestBody = 
       {
         email,
@@ -50,29 +51,38 @@ const Login = ({setIsAuthenticated}) => {
     }
   };
   
-  const { email, password, message } = formState; 
-
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => updateField("email", e.target.value)}
-          autoComplete="username" 
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => updateField("password", e.target.value)}
-          autoComplete="current-password"  // Add this attribute
-        />
-        <button type="submit">Login</button>
+    <div className="login-page">
+      <div className="form-section lessData-form-padding">
+      <form onSubmit={handleLogin}>  
+      <h2>Log In</h2>
+        <label>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => updateField("email", e.target.value)}
+            autoComplete="username" 
+          />
+        </label>
+        <label>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => updateField("password", e.target.value)}
+            autoComplete="current-password" 
+          />
+        </label>
+        <button type = "submit">LOGIN</button>
+        <p></p>
+        <div className = "login-page-register">
+           No account yet?
+          <Link to="/register" className="register-link-style"> Register </Link>
+        </div>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="warning-login-text warning-pop-up-message-animation">{message}</p>}
+    </div>
     </div>
   );
 };
