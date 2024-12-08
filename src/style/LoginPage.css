@@ -14,27 +14,4 @@
      font-weight: 550;
   }
   
-  .warning-login-text{
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    color: red;
-    font-weight: 600;
-  }
-
-  .warning-pop-up-message-animation{
-    animation: popUp 0.5s ease-in-out forwards;
-    z-index: 0; 
-  }
-
-  @keyframes popUp {
-    from {
-      transform: scale(0.5);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
+  

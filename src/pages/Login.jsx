@@ -81,7 +81,7 @@ const Login = ({setIsAuthenticated}) => {
           <Link to="/register" className="register-link-style"> Register </Link>
         </div>
       </form>
-      {message && <p className="warning-login-text warning-pop-up-message-animation">{message}</p>}
+      {message && <p className="warning-text warning-pop-up-message-animation">{message}</p>}
     </div>
     </div>
   );

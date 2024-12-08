@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ResendToken from "./components/ResendToken";
+import ResendToken from "./pages/ResendToken";
 import Home from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import PrivateRoute from "./features/authentications/components/PrivateRoute";
-import ActivateAccount from "./components/ActivateAccount"
+import ActivateAccount from "./pages/ActivateAccount"
 import "./style/CommonStyle/NavBar.css";
 import CalendarIcon from "./assets/calendar-color-icon.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -38,10 +38,12 @@ function App() {
       <div>
         <nav>
           <div className="navbar">
+          <Link className= "logo-link" to="/home">
             <div className="logo-container">
-              <LazyLoadImage src={CalendarIcon} alt="Calendar Icon" className="calendar-icon" />
-              <h3 className="logo">BNOCalTor</h3>
+                <LazyLoadImage src={CalendarIcon} alt="Calendar Icon" className="calendar-icon" />
+                <h3 className="logo">BNOCalTor</h3>
             </div>
+            </Link>
             {isAuthenticated && (
               <button onClick={handleLogout}>Logout</button>
             )}

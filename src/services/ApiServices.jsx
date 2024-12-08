@@ -1,24 +1,47 @@
 import axios from "axios";
 
-const api = axios.create({
-    baseURL: "http://localhost:8080/api",
-    headers: {
-      "Content-Type": "application/json",
-    },
+
+const baseURLbeforLogin = "http://localhost:8080/api";
+const baseURLafterLogin = "http://localhost:8080/api/user";
+
+export const beforeLoginApi = axios.create({
+    baseURL: baseURLbeforLogin
   });
   
-  // Authenticated API instance
-  const afterLoginApi = axios.create({
-    baseURL: "http://localhost:8080/api/user",
-    headers: {
-      "Content-Type": "application/json",
-    },
+
+export const afterLoginApi = axios.create({
+    baseURL: baseURLafterLogin
   });
 
+
+  export const beforeLoginGetParamApi = async (endpoint, token) => {
+    try {
+      const response = await beforeLoginApi.get(endpoint, {
+        params: { token }, // Pass token as a query parameter
+      });
+      return response;
+    } catch (error) {
+      console.error("API call failed:", error.response?.data || error.message);
+      throw error;
+    }
+  };
+  
+  
+export const beforeLoginPostParamApi = async (endpoint, email) => {
+  try {
+    const response = await beforeLoginApi.post(endpoint, null, {
+      params: { email }, // Pass email as a query parameter
+    });
+    return response;
+  } catch (error) {
+    console.error("API call failed:", error.response?.data || error.message);
+    throw error;
+  }
+};
 
 export const beforeLoginPostApi = async (endpoint, data, customHeaders = {}) => {
     try {
-      const response = await api.post(endpoint, data, {
+      const response = await beforeLoginApi.post(endpoint, data, {
         headers: { ...customHeaders },
       });
       return response;
@@ -27,6 +50,7 @@ export const beforeLoginPostApi = async (endpoint, data, customHeaders = {}) => 
       throw error;
     }
   };
+
   
   export const beforeLoginGetApi = async (endpoint, data, customHeaders = {}) => {
     try {

@@ -1,0 +1,57 @@
+
+.activation-page-container {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 2rem;
+    min-height: 65vh;
+    box-sizing: border-box;
+    text-align: center; 
+  }
+
+.activate-page-message{
+    padding:0.5rem;
+    background-color: aliceblue;
+    border-radius: 1rem;
+}
+
+  .success-text{
+    color: rgb(81, 193, 94);
+    padding: 1.5rem;
+    font-size: 25px;
+    font-weight:600;
+  }
+
+  .error-text{
+    color: red;
+    padding:1.5rem;
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  .loading-text{
+    padding:1.5rem;
+    color: aliceblue;
+    font-weight: bolder;
+    font-size: 30px;
+  }
+
+  .activation-page-container .activate-page-message button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover state for button */
+  .activation-page-container .activate-page-message button:hover {
+    background-color: #2980b9;
+    cursor: pointer;
+  }
+  

@@ -11,7 +11,9 @@ function Register() {
     password: "",
     re_type_password: "",
     message: "",
+    statusCode: null, // Add this line
   });
+  
 
   const updateField = (field, value) => {
     setFormState((prevState) => ({
@@ -20,7 +22,7 @@ function Register() {
     }));
   };
 
-  const { first_name, last_name, email, password, re_type_password, message } = formState;
+  const { first_name, last_name, email, password, re_type_password, message, statusCode } = formState;
 
   const handleRegister = async () => {
     try {
@@ -32,19 +34,28 @@ function Register() {
         re_type_password,
       };
       console.log("Request Body:", registerRequestBody);
-
+  
       const jsonHeader = {
         "Content-Type": "application/json",
       };
-
+  
       const response = await beforeLoginPostApi("/register", registerRequestBody, jsonHeader);
+  
+      // Log and update the state with HTTP status and message
       console.log("API Response:", response);
       updateField("message", response.data.message);
+      updateField("statusCode", response.status);
     } catch (error) {
-      console.error("Error occurred:", error?.response || error);
-      updateField("message", error?.response?.data?.message || "An error occurred");
+      // Extract HTTP status and error message if available
+      const status = error?.response?.status;
+      const errorMessage = error?.response?.data?.message || "An error occurred";
+  
+      console.error("Error occurred:", { status, error });
+      updateField("message", errorMessage);
+      updateField("statusCode", status || "Unknown");
     }
   };
+  
 
   return (
     <div className="register-page">
@@ -100,7 +111,17 @@ function Register() {
             />
           </label>
           <button type="submit">REGISTER</button>
-          {message && <p className="warning-login-text warning-pop-up-message-animation">{message}</p>}
+          {message && (
+            <p
+              className={`warning-text ${
+                statusCode !== 200
+                  ? 'warning-pop-up-message-animation'
+                  : 'successful-pop-up-message-animation'
+              }`}
+            >
+              {message}
+            </p>
+          )}
         </form>
       </div>
     </div>
