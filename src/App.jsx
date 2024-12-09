@@ -36,19 +36,28 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <div className="navbar">
-          <Link className= "logo-link" to="/home">
+      <nav className="nav-bar-container">
+        <div className="horizontal-navbar">
+          {/* Logo Section */}
+          <Link className="logo-link" to="/home">
             <div className="logo-container">
-                <LazyLoadImage src={CalendarIcon} alt="Calendar Icon" className="calendar-icon" />
-                <h3 className="logo">BNOCalTor</h3>
+              <LazyLoadImage src={CalendarIcon} alt="Calendar Icon" className="calendar-icon" />
+              <h3 className="logo">BNOCalTor</h3>
             </div>
-            </Link>
-            {isAuthenticated && (
-              <button onClick={handleLogout}>Logout</button>
-            )}
-          </div>
-        </nav>
+          </Link>
+
+          {/* Navigation Links */}
+          {isAuthenticated && (
+            <div className="nav-links">
+              <Link to="/home" className="navbar-link">Home</Link>
+              <Link to="/addTravelData" className="navbar-link">Add Travel Date</Link>
+              <Link to="/travellingData" className="navbar-link">Check Travel Data</Link>
+              <button className="logout-btn" onClick={handleLogout}>Logout</button>
+            </div>
+          )}
+        </div>
+       </nav>
+
         <Routes>
           <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/register" element={<Register />} />
