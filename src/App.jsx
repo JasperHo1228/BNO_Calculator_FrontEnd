@@ -39,7 +39,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div>
       <nav className="nav-bar-container">
         <div className="horizontal-navbar">
@@ -63,6 +63,7 @@ function App() {
         </div>
        </nav>
 
+    
         <Routes>
           <Route path="/" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/register" element={<Register />} />
