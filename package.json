@@ -1,17 +1,7 @@
 {
-<<<<<<< HEAD
   "homepage": "https://jasperho1228.github.io/BNO_Calculator_FrontEnd",
   "name": "bno_calculator_frontend",
   "version": "0.1.0",
-<<<<<<< HEAD
-=======
-  "homepage": "https://jasperho1228.github.io/BNO_Calculator_FrontEnd",
->>>>>>> feature/bno_phase_one
-=======
-  "homepage": "https://jasperho1228.github.io/BNO_Calculator_FrontEnd ",
-  "name": "bno_calculator_frontend",
-  "version": "0.1.0",
->>>>>>> feature/bno_phase_one
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
