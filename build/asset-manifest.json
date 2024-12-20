@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/BNO_Calculator_FrontEnd/static/css/main.40f324ed.css",
+    "main.js": "/BNO_Calculator_FrontEnd/static/js/main.48d660d4.js",
+    "static/js/453.85c8b0fe.chunk.js": "/BNO_Calculator_FrontEnd/static/js/453.85c8b0fe.chunk.js",
+    "static/media/omg_error.svg": "/BNO_Calculator_FrontEnd/static/media/omg_error.565f1d450d37743ed5e2ebafccdfb71f.svg",
+    "static/media/calendar-color-icon.svg": "/BNO_Calculator_FrontEnd/static/media/calendar-color-icon.19f6f3a26132dc4c094da1ad763840bd.svg",
+    "index.html": "/BNO_Calculator_FrontEnd/index.html",
+    "main.40f324ed.css.map": "/BNO_Calculator_FrontEnd/static/css/main.40f324ed.css.map",
+    "main.48d660d4.js.map": "/BNO_Calculator_FrontEnd/static/js/main.48d660d4.js.map",
+    "453.85c8b0fe.chunk.js.map": "/BNO_Calculator_FrontEnd/static/js/453.85c8b0fe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.40f324ed.css",
+    "static/js/main.48d660d4.js"
+  ]
+}
