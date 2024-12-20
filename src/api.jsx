@@ -17,23 +17,4 @@ const afterLoginApi = axios.create({
 });
 
 
-// afterLoginApi.interceptors.request.use(
-//   (config) => {
-//     // Retrieve credentials (username and password) from localStorage or another storage mechanism
-//     const username = localStorage.getItem("username");
-//     const password = localStorage.getItem("password");
-
-//     if (username && password) {
-//       // Set the Authorization header
-//       config.headers.Authorization = `Basic ${btoa(`${username}:${password}`)}`;
-//     }
-
-//     return config;
-//   },
-//   (error) => {
-//     // Handle request errors
-//     return Promise.reject(error);
-//   }
-// );
-
 export { api, afterLoginApi };

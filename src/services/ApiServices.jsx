@@ -91,3 +91,28 @@ export const beforeLoginPostApi = async (endpoint, data, customHeaders = {}) => 
   };
 
 
+  export const afterLoginPostParamApi = async (endpoint, customHeaders = {}, start_date, end_date) => {
+    try {
+      const response = await afterLoginApi.post(endpoint, null, {
+        headers: { ...customHeaders },
+        params: { start_date, end_date }, 
+      });
+      return response.data; 
+    } catch (error) {
+      console.error("API call failed:", error.response?.data || error.message);
+      throw error;
+    }
+  };
+  
+  export const afterLoginDeleteParamApi = async (endpoint, customHeaders = {}, id) => {
+    try {
+        const response = await afterLoginApi.delete(endpoint, {
+            headers: { ...customHeaders },
+            params: { id }, // Ensure id is being sent as a parameter
+        });
+        return response.data; 
+    } catch (error) {
+        console.error("API call failed:", error.response?.data || error.message);
+        throw error;
+    }
+};

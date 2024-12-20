@@ -40,13 +40,13 @@ function Register() {
       };
   
       const response = await beforeLoginPostApi("/register", registerRequestBody, jsonHeader);
-  
+      
       // Log and update the state with HTTP status and message
       console.log("API Response:", response);
       updateField("message", response.data.message);
       updateField("statusCode", response.status);
     } catch (error) {
-      // Extract HTTP status and error message if available
+      
       const status = error?.response?.status;
       const errorMessage = error?.response?.data?.message || "An error occurred";
   

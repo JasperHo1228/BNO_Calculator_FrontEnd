@@ -46,8 +46,9 @@ const Login = ({setIsAuthenticated}) => {
         updateField("message", response.data.message);
       }
     } catch (error) {
+      const errorMsg = error?.response?.data?.message === "Bad credentials" ? "Wrong Username or Password" : error?.response?.data?.message
       console.log("Error response: ", error?.response);
-      updateField("message", error?.response?.data?.message);
+      updateField("message", errorMsg);
     }
   };
   

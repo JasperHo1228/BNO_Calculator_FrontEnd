@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ResendToken from "./pages/ResendToken";
 import Home from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import PrivateRoute from "./features/authentications/components/PrivateRoute";
-import ActivateAccount from "./pages/ActivateAccount"
+import ActivateAccount from "./pages/ActivateAccount";
+import AddTravelData from "./pages/AddTravelData";
+import GetAllTravel from "./pages/GetAllTravel";
+import TravelDataDetail from "./pages/TravelDataDetail"
 import "./style/CommonStyle/NavBar.css";
 import CalendarIcon from "./assets/calendar-color-icon.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+  
+   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const email = localStorage.getItem("email");
     const expiry = localStorage.getItem("expiry");
     if (!email || !expiry) return false;
@@ -25,12 +29,13 @@ function App() {
     }
     return true;
   });
-
+ 
   const handleLogout = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("password");
     localStorage.removeItem("expiry");
     setIsAuthenticated(false);
+
   };
 
   return (
@@ -75,6 +80,18 @@ function App() {
               <PrivateRoute element={LandingPage} isAuthenticated={isAuthenticated} />
             }
           />
+          <Route 
+            path ="/addTravelData" 
+            element={<PrivateRoute element={AddTravelData} isAuthenticated={isAuthenticated}/>} 
+               />  
+          <Route 
+            path ="/travellingData" 
+            element={<PrivateRoute element={GetAllTravel} isAuthenticated={isAuthenticated}/>} 
+               />  
+
+         <Route path="/travelDataDetail" 
+            element={<PrivateRoute element={TravelDataDetail} isAuthenticated={isAuthenticated}/>}
+            />
         </Routes>
       </div>
     </Router>

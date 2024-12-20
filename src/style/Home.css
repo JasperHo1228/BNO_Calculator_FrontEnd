@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 3rem;
     min-height: 100vh;
     box-sizing: border-box;
     text-align: center;
@@ -11,18 +11,17 @@
   
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); /* Responsive grid */
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 1rem;
     margin-top: 1.5rem;
     width: 100%;
-    padding-top: 1rem;
+    padding: 1rem;
   }
   
   .card {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -32,18 +31,43 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   }
   
-  .card h3 {
+  .card {
     margin-bottom: 1rem;
     font-size: 1.25rem;
-    color: #2c3e50;
   }
   
-  .card p {
+  .card-general-title{
+    color: #00538C;
+  }
+
+  .card .normal-card-text{
     font-size: 1rem;
-    color: #34495e;
     margin: 0.5rem 0;
   }
   
+  .each-year-record-text{
+    color: #005f69;
+    font-weight: 500;
+  }
+
+  .card-title{
+     color:#2E5090;
+  }
+
+  .message-title{
+     color:#003153;
+  }
+
+  .each-year-safe-text{
+    color: #5072A7;
+    font-weight: 500;
+  }
+    
+  .each-year-warning-text{
+    color: #c52121;
+    font-weight: 500;
+  }
+
   .record-section {
     grid-column: span 2; /* Span two columns if screen allows */
     text-align: left;
@@ -57,12 +81,29 @@
   
   .message-card {
     background-color: #fef6e4;
-    color: #b5651d;
   }
   
+  .yearly-text-record-title{
+    background-color: #fef6e4;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: #4B9CD3;
+  }
+
   @media (max-width: 768px) {
     .cards-container {
       grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
     }
   }
   
+  .warning-text{
+    color: #E31837;
+    background-color: #fef6e4;
+    font-weight: 600;
+  }
+
+  .safe-text{
+    color:rgb(40, 152, 135);
+    background-color: #fef6e4;
+    font-weight: 600;
+  }

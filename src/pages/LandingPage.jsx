@@ -34,7 +34,7 @@ const LandingPage = () => {
 
         const response = await afterLoginGetApi("/landingPage", { Authorization: authHeader });
         localStorage.setItem("authHeader", authHeader);
-
+   
         setMessage({
           username: response.data, // Assuming response contains username
           title: "Welcome to BNO Calculator App",
