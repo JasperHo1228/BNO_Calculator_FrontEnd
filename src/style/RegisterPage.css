@@ -8,4 +8,14 @@
     text-align: center; 
   }
 
-  
+  .register-warning-pop-up-message-animation{
+    animation: popUp 0.5s ease-in-out forwards;
+    color: red;
+    z-index: 0; 
+  }
+
+  .register-successful-pop-up-message-animation{
+    animation: popUp 0.5s ease-in-out forwards;
+    color: rgb(41, 153, 114);
+    z-index: 0; 
+  }

@@ -11,7 +11,7 @@ function Register() {
     password: "",
     re_type_password: "",
     message: "",
-    statusCode: null, // Add this line
+    statusCode: null, 
   });
   
 
@@ -23,7 +23,7 @@ function Register() {
   };
 
   const { first_name, last_name, email, password, re_type_password, message, statusCode } = formState;
-
+  
   const handleRegister = async () => {
     try {
       const registerRequestBody = {
@@ -55,8 +55,8 @@ function Register() {
       updateField("statusCode", status || "Unknown");
     }
   };
-  
-
+  const isSuccessMessage = Number(statusCode) === 200;
+  console.log(isSuccessMessage);
   return (
     <div className="register-page">
       <div className="form-section moreData-form-padding">
@@ -114,9 +114,9 @@ function Register() {
           {message && (
             <p
               className={`warning-text ${
-                statusCode !== 200
-                  ? 'warning-pop-up-message-animation'
-                  : 'successful-pop-up-message-animation'
+                isSuccessMessage
+                  ? 'register-successful-pop-up-message-animation'
+                  : 'register-warning-pop-up-message-animation' 
               }`}
             >
               {message}

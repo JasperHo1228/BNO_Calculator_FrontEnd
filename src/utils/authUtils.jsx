@@ -9,6 +9,7 @@ export const getAuthHeader = () => {
   
     // Base64 encode the credentials
     const credentials = btoa(`${email}:${password}`);
+    console.log(credentials);
     return `Basic ${credentials}`;
   };
   

@@ -40,8 +40,6 @@ const TravelDataTable = ({ travelData, onDelete }) => {
                     ))}
                 </tbody>
             </table>
-            <br/>
-            <div className='travelDataTableResult'>This year has been used <span className='day-text'>{travelData.total_day_each_year}</span> days</div>
         </div>
     );
 };

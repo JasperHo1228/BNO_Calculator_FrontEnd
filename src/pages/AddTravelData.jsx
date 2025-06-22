@@ -36,6 +36,7 @@ const AddTravelData = () => {
       const requestBody = { start_date, end_date, arrival_location, departure_location };
   
       try {
+
           const response = await afterLoginPostApi(
               "/addNewTravelInfo",
               requestBody,
@@ -56,6 +57,8 @@ const AddTravelData = () => {
           setStatusCode(status || "Unknown");
       }
   };
+  
+  const isSuccessMessage = statusCode === 200 || Number(setStatusCode) === 200;
     return (
         <div className="addTravelData-page">
             <div className="form-section moreData-form-padding">
@@ -118,12 +121,13 @@ const AddTravelData = () => {
                     {message && (
                         <p
                             className={`warning-text ${
-                                statusCode === "200"
-                                    ? 'successful-pop-up-message-animation'
-                                    : 'warning-pop-up-message-animation' 
+                                isSuccessMessage
+                                    ? 'addTravel-successful-pop-up-message-animation' 
+                                    : 'addTravel-warning-pop-up-message-animation' 
                             }`}
                         >
                             {message}
+            
                         </p>
                     )}
                 </form>
