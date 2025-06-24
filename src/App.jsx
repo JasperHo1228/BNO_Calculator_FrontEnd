@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ResendToken from "./pages/ResendToken";
@@ -17,26 +17,26 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function App() {
   
-   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const email = localStorage.getItem("email");
-    const expiry = localStorage.getItem("expiry");
-    if (!email || !expiry) return false;
+const [isAuthenticated, setIsAuthenticated] = useState(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return false;
 
-    const isExpired = Date.now() > parseInt(expiry, 10);
-    if (isExpired) {
-      localStorage.clear();
-      return false;
-    }
-    return true;
-  });
+  const expiry = localStorage.getItem("expiry");
+  if (expiry && Date.now() > parseInt(expiry, 1000)) {
+    localStorage.clear();
+    return false;
+  }
+
+  return true;
+});
+
  
-  const handleLogout = () => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
-    localStorage.removeItem("expiry");
-    setIsAuthenticated(false);
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("expiry");
+  setIsAuthenticated(false);
+};
 
-  };
 
   return (
     <Router>

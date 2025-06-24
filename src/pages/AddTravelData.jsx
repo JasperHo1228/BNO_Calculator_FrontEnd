@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { getAuthHeader } from "../utils/authUtils";
+import { useState } from "react";
 import { afterLoginPostApi } from "../services/ApiServices";
 import "../style/CommonStyle/GeneralForm.css";
 import "../style/AddTravelData.css";
@@ -31,7 +30,7 @@ const AddTravelData = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const authHeader = getAuthHeader();
+
       
       const requestBody = { start_date, end_date, arrival_location, departure_location };
   
@@ -39,11 +38,7 @@ const AddTravelData = () => {
 
           const response = await afterLoginPostApi(
               "/addNewTravelInfo",
-              requestBody,
-              {
-                  Authorization: authHeader,
-                  "Content-Type": "application/json",
-              }
+              requestBody,{}
           );
           
           // Assuming response.data contains the object with status and message

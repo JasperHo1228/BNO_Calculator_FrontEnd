@@ -34,17 +34,17 @@ const Login = ({setIsAuthenticated}) => {
       };
   
       const response = await beforeLoginPostApi("/login", loginRequestBody, jsonHeader);
-      if (response.status === 200) {
-        localStorage.clear();
-        localStorage.setItem("email", email);
-        localStorage.setItem("password", password);
-        const hasCompletedLandingPage = response.data.hasCompletedLandingPage;
-        console.log(hasCompletedLandingPage)
-        setIsAuthenticated(true); 
-        navigate(hasCompletedLandingPage ? "/home" : "/landingPage");
-      } else {
-        updateField("message", response.data.message);
-      }
+        if (response.status === 200) {
+          localStorage.clear();
+          localStorage.setItem("token", response.data.token); 
+          const hasCompletedLandingPage = response.data.hasCompletedLandingPage;
+          console.log(hasCompletedLandingPage);
+          setIsAuthenticated(true);
+          navigate(hasCompletedLandingPage ? "/home" : "/landingPage");
+        } else {
+          updateField("message", response.data.message);
+        }
+
     } catch (error) {
       const errorMsg = error?.response?.data?.message === "Bad credentials" ? "Wrong Username or Password" : error?.response?.data?.message
       console.log("Error response: ", error?.response);

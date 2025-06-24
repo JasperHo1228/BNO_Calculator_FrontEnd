@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuthHeader } from "../utils/authUtils";
 import { afterLoginGetApi, afterLoginPostApi } from "../services/ApiServices";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../style/LandingPage.css";
@@ -28,13 +27,10 @@ const LandingPage = () => {
   useEffect(() => {
     const authenticateAndFetchData = async () => {
       try {
-        const authHeader = getAuthHeader();
         const isReturningUser = localStorage.getItem("isReturningUser");
         setIsNewUser(!isReturningUser);
 
-        const response = await afterLoginGetApi("/landingPage", { Authorization: authHeader });
-        localStorage.setItem("authHeader", authHeader);
-   
+        const response = await afterLoginGetApi("/landingPage");
         setMessage({
           username: response.data, // Assuming response contains username
           title: "Welcome to BNO Calculator App",
@@ -67,7 +63,6 @@ const LandingPage = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const authHeader = getAuthHeader();
 
     try {
       const response = await afterLoginPostApi(
@@ -76,10 +71,7 @@ const LandingPage = () => {
           bno_valid_date: formData.bnoValidDate,
           first_arrival_date: formData.firstArrivalDate,
         },
-        {
-          Authorization: authHeader,
-          "Content-Type": "application/json",
-        }
+        {}
       );
 
       setMessage(response.data);

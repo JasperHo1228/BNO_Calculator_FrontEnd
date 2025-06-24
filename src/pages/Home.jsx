@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { afterLoginApi } from "../api";
-import { afterLoginPostApi } from "../services/ApiServices";
-import { getAuthHeader } from "../utils/authUtils";
+import { afterLoginApi, afterLoginPostApi } from "../services/ApiServices";
 import "../style/Home.css";
 
 const Home = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(null); 
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      const authHeader = getAuthHeader();
-      const response = await afterLoginApi.get("/home", {
-        headers: {
-          Authorization: authHeader,
-        },
-      });
-      localStorage.setItem("authHeader", authHeader);
+      const response = await afterLoginApi.get("/home");
       setData(response.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
@@ -32,33 +25,21 @@ const Home = () => {
   }, []);
 
   const handleCalculateBtn = async (id) => {
-    const authHeader = getAuthHeader();
-
+    setButtonLoading(id);
     try {
       const response = await afterLoginPostApi(
         `/getTheHighestDayEachYear?id=${id}`,
-        {},
-        {
-          Authorization: authHeader,
-          "Content-Type": "application/json",
-        }
+        {}
       );
-
       const result = response.data;
       console.log("Highest Day:", result);
       alert(`Highest Day: ${result}`);
-
-      // Refresh data after successful calculation
-      await fetchData();
-
+      await fetchData(); // Refresh data
     } catch (error) {
-      if (error.response) {
-        console.error("Error:", error.response.data.message);
-        alert(`Error: ${error.response.data.message}`);
-      } else {
-        console.error("Error submitting data:", error);
-        alert("An unexpected error occurred.");
-      }
+      console.error("Error:", error.response?.data?.message || error.message);
+      alert(`Error: ${error.response?.data?.message || "An unexpected error occurred."}`);
+    } finally {
+      setButtonLoading(null);
     }
   };
 
@@ -85,10 +66,10 @@ const Home = () => {
 
           <div className="record-section">
             <h3 className="yearly-text-record-title">Yearly Usage Records</h3>
-            {data.each_year_have_used_record.map((record, index) => (
+            {data.each_year_have_used_record.map((record) => (
               <div
                 className="card record-card"
-                key={index}
+                key={record.each_year_data_id}
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
               >
                 <div>
@@ -117,9 +98,9 @@ const Home = () => {
                 <button
                   style={{ marginLeft: "auto", padding: "6px 12px", cursor: "pointer" }}
                   onClick={() => handleCalculateBtn(record.each_year_data_id)}
-                  disabled={loading}
+                  disabled={buttonLoading === record.each_year_data_id}
                 >
-                  {loading ? "Calculating..." : "Calculate"}
+                  {buttonLoading === record.each_year_data_id ? "Calculating..." : "Calculate"}
                 </button>
               </div>
             ))}

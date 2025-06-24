@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import TravelDataTable from '../features/authentications/components/TravelDataTable'; 
 import { afterLoginDeleteParamApi } from "../services/ApiServices";
-import { getAuthHeader } from "../utils/authUtils";
+
 
 const TravelDataDetail = () => {
     const location = useLocation();
@@ -11,13 +11,10 @@ const TravelDataDetail = () => {
 
     const handleDelete = async (id) => {
         try {
-            const authHeader = getAuthHeader();
 
             // Call delete API
             const response = await afterLoginDeleteParamApi(
-                `/delete/travelRecord`, 
-                { Authorization: authHeader }, 
-                id
+                `/delete/travelRecord`, id
             );
 
             alert(response); 

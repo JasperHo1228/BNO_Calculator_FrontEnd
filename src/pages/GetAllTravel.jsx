@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { getAuthHeader } from "../utils/authUtils";
+import { useState, useEffect } from "react";
 import { afterLoginGetApi, afterLoginPostParamApi } from "../services/ApiServices";
 import { useNavigate } from "react-router-dom"; 
 import '../style/GetAllTravel.css';
@@ -11,8 +10,7 @@ const GetAllTravel = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const authHeader = getAuthHeader();
-                const response = await afterLoginGetApi("/getSpecificYearInfo", { Authorization: authHeader });
+                const response = await afterLoginGetApi("/getSpecificYearInfo");
                 console.log(response.data);
                 setData(response.data);
             } catch (error) {
@@ -25,9 +23,7 @@ const GetAllTravel = () => {
 
     const handleCardClick = async (startDate, endDate) => {
         try {
-            const authHeader = getAuthHeader();
-            const travelData = await afterLoginPostParamApi("/getSpecificYearInfoDetail", { Authorization: authHeader }, startDate, endDate);
-        
+            const travelData = await afterLoginPostParamApi("/getSpecificYearInfoDetail", startDate, endDate);
             navigate('/travelDataDetail', { state: { travelData } });
         } catch (error) {
             console.error("Error fetching travel data:", error);
