@@ -1,11 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { afterLoginApi, afterLoginPostApi } from "../services/ApiServices";
 import "../style/Home.css";
+import '../style/CommonStyle/AlertBox.css'
 
 const Home = () => {
+  
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(null); 
+  const [customAlert, setCustomAlert] = useState({ visible: false, message: "", type: "info" });
+
+  const showAlert = (message, type = "info") => {
+    return new Promise((resolve) => {
+      setCustomAlert({
+        visible: true,
+        message,
+        type,
+        onConfirm: () => {
+          setCustomAlert({ ...customAlert, visible: false });
+          resolve(); 
+        }
+      });
+    });
+  };
+
+
 
   const fetchData = async () => {
     try {
@@ -33,11 +52,11 @@ const Home = () => {
       );
       const result = response.data;
       console.log("Highest Day:", result);
-      alert(`Highest Day: ${result}`);
+      await showAlert(`Highest Day: ${result}`);
       await fetchData(); // Refresh data
     } catch (error) {
       console.error("Error:", error.response?.data?.message || error.message);
-      alert(`Error: ${error.response?.data?.message || "An unexpected error occurred."}`);
+      showAlert(`Error: ${error.response?.data?.message || "An unexpected error occurred."}`, "error");
     } finally {
       setButtonLoading(null);
     }
@@ -48,8 +67,8 @@ const Home = () => {
       {loading ? (
         <p className="loading-text">Loading...</p>
       ) : data ? (
+        
         <div className="cards-container">
-
           <div className="card">
             <h3 className="card-general-title">Total Days Used</h3>
             <p className={data.total_day_have_used > 450 ? "each-year-warning-text" : "each-year-safe-text"}>
@@ -96,6 +115,7 @@ const Home = () => {
                 </div>
 
                 <button
+                  className="calculate-btn"
                   style={{ marginLeft: "auto", padding: "6px 12px", cursor: "pointer" }}
                   onClick={() => handleCalculateBtn(record.each_year_data_id)}
                   disabled={buttonLoading === record.each_year_data_id}
@@ -112,7 +132,14 @@ const Home = () => {
               {data.break_the_rule_message}
             </p>
           </div>
-
+          {customAlert.visible && (
+            <div className="custom-alert-overlay">
+              <div className={`custom-alert-box ${customAlert.type}`}>
+                <p className="alert-message">{customAlert.message}</p>
+                <button onClick={customAlert.onConfirm}>OK</button>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <p className="loading-text">No data available.</p>
